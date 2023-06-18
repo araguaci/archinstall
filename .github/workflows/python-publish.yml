@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
       - name: Install dependencies
@@ -24,7 +24,7 @@ jobs:
           pip install build twine
       - name: Build archinstall
         run: |
-          python -m build
+          python -m build . --wheel
       - name: Publish archinstall to PyPi
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}

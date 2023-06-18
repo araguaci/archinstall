@@ -1,9 +1,8 @@
 {
-	"!root-password": "<root password>",
-	"!users": {
-		"username": {"!password": "<user password>"}
-	},
-	"!superusers": {
-		"admin": {"!password": "<admin password>"}
-	}
+    "!users": [
+        {
+            "sudo": true,
+            "username": "archinstall"
+        }
+    ]
 }

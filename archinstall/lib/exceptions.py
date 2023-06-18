@@ -1,4 +1,8 @@
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
+
+if TYPE_CHECKING:
+	from .general import SysCommandWorker
+
 
 class RequirementError(BaseException):
 	pass
@@ -12,30 +16,15 @@ class UnknownFilesystemFormat(BaseException):
 	pass
 
 
-class ProfileError(BaseException):
-	pass
-
-
 class SysCallError(BaseException):
-	def __init__(self, message :str, exit_code :Optional[int] = None) -> None:
+	def __init__(self, message :str, exit_code :Optional[int] = None, worker :Optional['SysCommandWorker'] = None) -> None:
 		super(SysCallError, self).__init__(message)
 		self.message = message
 		self.exit_code = exit_code
-
-
-class PermissionError(BaseException):
-	pass
-
-
-class ProfileNotFound(BaseException):
-	pass
+		self.worker = worker
 
 
 class HardwareIncompatibilityError(BaseException):
-	pass
-
-
-class UserError(BaseException):
 	pass
 
 
@@ -47,5 +36,5 @@ class PackageError(BaseException):
 	pass
 
 
-class TranslationError(BaseException):
+class Deprecated(BaseException):
 	pass

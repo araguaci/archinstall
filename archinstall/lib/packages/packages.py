@@ -1,3 +1,4 @@
+import dataclasses
 import json
 import ssl
 from typing import Dict, Any, Tuple, List
@@ -6,7 +7,7 @@ from urllib.parse import urlencode
 from urllib.request import urlopen
 
 from ..exceptions import PackageError, SysCallError
-from ..models.dataclasses import PackageSearch, PackageSearchResult, LocalPackage
+from ..models.gen import PackageSearch, PackageSearchResult, LocalPackage
 from ..pacman import run_pacman
 
 BASE_URL_PKG_SEARCH = 'https://archlinux.org/packages/search/json/'
@@ -112,4 +113,4 @@ def installed_package(package :str) -> LocalPackage:
 	except SysCallError:
 		pass
 
-	return LocalPackage(**package_info)
+	return LocalPackage({field.name: package_info.get(field.name) for field in dataclasses.fields(LocalPackage)})  # type: ignore

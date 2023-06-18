@@ -1,11 +1,23 @@
 # Nationalization
 
-Archinstall supports multiple languages, which depend on translations coming from the community :) 
+Archinstall supports multiple languages, which depend on translations coming from the community :)
 
-New languages can be added simply by creating a new folder with the proper language abbrevation (see list `languages.json` if unsure).  
+## Important Note
+Before starting a new language translation be aware that a font for that language may not be
+available on the ISO.
+
+Fonts that are using a different character set than Latin will not be displayed correctly. If those languages
+want to be selected than a proper font has to be set manually in the console.
+
+All available console fonts can be found in `/usr/share/kbd/consolefonts` and they
+can be set with `setfont LatGrkCyr-8x16`
+
+## Adding new languages
+
+New languages can be added simply by creating a new folder with the proper language abbreviation (see list `languages.json` if unsure).  
 Run the following command to create a new template for a language
 ```
-    mkdir -p <abbr>/LC_MESSAGES/ && touch <abbr>/LC_MESSAGES/base.po
+mkdir -p <abbr>/LC_MESSAGES/ && touch <abbr>/LC_MESSAGES/base.po
 ```
 
 After that run the script `./locales_generator.sh` it will automatically populate the new `base.po` file with the strings that 
